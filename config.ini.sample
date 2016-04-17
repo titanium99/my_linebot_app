@@ -1,0 +1,11 @@
+[LINE_HEADERS]
+# your developer info
+# No quote
+Channel_ID =
+Channel_Secret =
+Channel_MID =
+
+[test]
+# test cron message send to
+# send_to = 'sendToID'
+send_to = 
