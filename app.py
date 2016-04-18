@@ -7,7 +7,7 @@ import requests
 import json
 import re
 import logging
-from apscheduler.schedulers.blocking import BlockingScheduler
+#from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
 import configparser
 
@@ -17,7 +17,7 @@ import configparser
 logging.basicConfig( level=logging.DEBUG)
 
 app = Flask(__name__)
-sc = BlockingScheduler()
+#sc = BlockingScheduler()
 inifile = configparser.SafeConfigParser()
 inifile.read("./config.ini")
 
@@ -46,11 +46,15 @@ def post_text( to, text ):
     }
     post_event(to, content)
 
-@sc.scheduled_job('interval', minutes=1, id='info_job_id')
-def cronjob():
-    to = inifile.get('test','send_to') #test:write lineID
+def now_time():
     now = datetime.now().strftime("%p%I:%M:%S")
-    post_text(to,"Hello info!\nおはようございます.\n現在{}です.".format(now))
+    post_text(to,"こんにちわ！.\n現在{}です.".format(now))
+
+#@sc.scheduled_job('interval', minutes=1, id='info_job_id')
+#def cronjob():
+#    to = inifile.get('test','send_to') #test:write lineID
+#    now = datetime.now().strftime("%p%I:%M:%S")
+#    post_text(to,"Hello info!\nおはようございます.\n現在{}です.".format(now))
 
 @app.route('/')
 def index():
@@ -65,7 +69,10 @@ def hellw():
     for msg in msgs:
         logging.debug("%s",msg['content']['from'])
         text = msg['content']['text']
-        post_text(msg['content']['from'],text)
+        if text == "何時？"
+            now_time()
+        else:
+            post_text(msg['content']['from'],text)
     return ""
 
 @app.route('/miya')
