@@ -2,4 +2,8 @@
 *.swp
 .DS_Store
 config.ini
+<<<<<<< 9d76257070b79ba804f9266cbeffe68171631909
 __pychache__/
+=======
+__pycache__/
+>>>>>>> Change .gitignore
