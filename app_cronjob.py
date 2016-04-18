@@ -9,7 +9,7 @@ import re
 import logging
 from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
-import configrparser
+import configparser
 
 # create logger
 #logger = logging.getLogger('simple_example')
