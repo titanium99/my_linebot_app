@@ -46,7 +46,7 @@ def post_text( to, text ):
     }
     post_event(to, content)
 
-def now_time():
+def now_time(to):
     now = datetime.now().strftime("%p%I:%M:%S")
     post_text(to,"こんにちわ！.\n現在{}です.".format(now))
 
@@ -69,10 +69,11 @@ def hellw():
     for msg in msgs:
         logging.debug("%s",msg['content']['from'])
         text = msg['content']['text']
+        to = msg['content']['from']
         if text == "何時？":
-            now_time()
+            now_time(to)
         else:
-            post_text(msg['content']['from'],text)
+            post_text(to,text)
     return ""
 
 @app.route('/miya')
