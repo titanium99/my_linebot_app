@@ -69,7 +69,7 @@ def hellw():
     for msg in msgs:
         logging.debug("%s",msg['content']['from'])
         text = msg['content']['text']
-        if text == "何時？"
+        if text == "何時？":
             now_time()
         else:
             post_text(msg['content']['from'],text)
