@@ -9,6 +9,7 @@ import re
 import logging
 #from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime
+import pytz
 import configparser
 
 # create logger
@@ -20,6 +21,8 @@ app = Flask(__name__)
 #sc = BlockingScheduler()
 inifile = configparser.SafeConfigParser()
 inifile.read("./config.ini")
+tz_tokyo = pytz.timezone('Asia/tokyo')
+
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
 LINE_HEADERS = {
@@ -47,8 +50,10 @@ def post_text( to, text ):
     post_event(to, content)
 
 def now_time(to):
-    now = datetime.now().strftime("%p%I:%M:%S")
-    post_text(to,"こんにちわ！.\n現在{}です.".format(now))
+    timeformat = "%p%I:%M:%S"
+    utcnow = datetime.now().strftime(timeformat)
+    tknow = datetime.now(tz_tokyo).strftime(timeformat)
+    post_text(to,"こんにちわ！.\n現在{}です.".format(tknow))
 
 #@sc.scheduled_job('interval', minutes=1, id='info_job_id')
 #def cronjob():
