@@ -21,7 +21,7 @@ app = Flask(__name__)
 #sc = BlockingScheduler()
 inifile = configparser.SafeConfigParser()
 inifile.read("./config.ini")
-tz_tokyo = pytz.timezone('Asia/tokyo')
+tz_tokyo = pytz.timezone('Asia/Tokyo')
 
 
 LINEBOT_API_EVENT ='https://trialbot-api.line.me/v1/events'
