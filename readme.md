@@ -7,5 +7,5 @@ Python3.4以上
 - config.ini ファイルの作成
     >> cp config.ini.sample config.ini
 - config.ini の編集  
-- (gunicorn使うのであれば)必要に応じてguniconf.py の編集
+- (gunicorn使うのであれば)必要に応じてguniconf.py の編集  
 - 
