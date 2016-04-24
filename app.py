@@ -95,7 +95,7 @@ def hellw():
         if text == "何時？":
             now_time(to)
         elif re.search(u"更新情報(：|:)",text):
-            morph = ydn_post_text(msgs)
+            morph = ydn_post_text(text)
             kigyo = morph[morph.index("情報") + 1]
             kousin = search_db(kigyo)
             if len(kousin) == 0:
