@@ -97,7 +97,8 @@ def hellw():
         elif re.search(u"更新情報(：|:)",text):
             morph = ydn_post_text(text)
             kigyo = morph[morph.index("情報") + 1]
-            kousin = search_db(kigyo)
+            tkdate = datetime.now(tz_tokyo).strftime("%m月%d日")
+            kousin = search_db(kigyo,tkdate)
             if len(kousin) == 0:
                 post_text(to, "本日の更新はないです。")
             else:
