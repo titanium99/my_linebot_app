@@ -32,6 +32,8 @@ def scraping_html(src):
     """PMDAの１ヶ月以内に更新された添付文書情報のスクレイピング用
 BSで該当tableタグ取得->該当データをdict-> tinyDBに入れる(json保存)
     """
+    """ Todo:4/25企業名にスペースが入っていると、以降が切れるのを修正
+        """
     soup = BeautifulSoup(src['html'])
     table = soup.find('h2', text='掲載分').next_sibling.next_sibling
     tr = table.find_all('tr')
@@ -41,8 +43,8 @@ BSで該当tableタグ取得->該当データをdict-> tinyDBに入れる(json�
         update = {}
         update['date'] = soup.find('td',class_='title').text
         update['seihin'] = tdlist[0].text.split()[0]
-        update['kigyo'] = tdlist[1].text.split()[0]
-        update['status'] = tdlist[2].text.split()[0]
+        update['kigyo'] = tdlist[1].text
+        update['status'] = tdlist[2].text
         update['timestamp'] = src['timestamp']
         changelist.append(update)
     db_table.insert_multiple(changelist)
